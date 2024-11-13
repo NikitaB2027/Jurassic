@@ -13,9 +13,9 @@ public class Start implements Runnable{
     public JPanel panel;
 
     public BufferStrategy bufferStrategy;
-    public Image dinoPic;
-    public  Image flydinoPic;
-    public Image smalldinoPic;
+    public Image BenPic;
+    public  Image StevePic;
+    public Image TedPic;
 
     public dinosaur Ben;
     public flydino Steve;
@@ -25,6 +25,7 @@ public class Start implements Runnable{
         System.out.println("Hello world!");
         Start Jurassic;
         Jurassic=new Start();
+        Jurassic.run();
     }
 
     // Constructor Method
@@ -37,12 +38,12 @@ public class Start implements Runnable{
 
         //variable and objects
         //create (construct) the objects needed for the game and load up
-        dinoPic = Toolkit.getDefaultToolkit().getImage("dino.png"); //load the picture
-        Ben = new dinosaur(10,100, 2, 1);
-        flydinoPic=Toolkit.getDefaultToolkit().getImage("flying.png");
-        Steve = new flydino(10,200,2,1);
-        smalldinoPic = Toolkit.getDefaultToolkit().getImage("small.png");
-        Ted = new SmallDino(10,200,3,2);
+        BenPic = Toolkit.getDefaultToolkit().getImage("dino.png"); //load the picture
+        Ben = new dinosaur(500,100, 2, 1);
+        StevePic=Toolkit.getDefaultToolkit().getImage("flying.png");
+        Steve = new flydino(10,100,3,0);
+        TedPic = Toolkit.getDefaultToolkit().getImage("small.png");
+        Ted = new SmallDino(500,500,10,0);
 
 
     }// BasicGameApp()
@@ -111,9 +112,9 @@ public class Start implements Runnable{
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         //draw the image of the astronaut
-        g.drawImage(dinoPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
-        g.drawImage(flydinoPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
-
+        g.drawImage(BenPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
+        g.drawImage(StevePic, Steve.xpos, Steve.ypos, Steve.width, Steve.height, null);
+        g.drawImage(TedPic, Ted.xpos, Ted.ypos, Ted.width, Ted.height, null);
         g.dispose();
 
         bufferStrategy.show();

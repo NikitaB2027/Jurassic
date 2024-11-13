@@ -13,14 +13,14 @@ public class dinosaur {
         ypos=pYpos;
         dx=pdx;
         dy=pdy;
-        width=100;
-        height=100;
+        width=375;
+        height=375;
         isAlive = true;
     }
 
     public void move(){
-        xpos=xpos+dx;
-        ypos=ypos+dy;
+        xpos=xpos-dx;
+        ypos=ypos-dy;
         if (xpos>1000){
             dx=-dx;
         }

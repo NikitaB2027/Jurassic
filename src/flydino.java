@@ -13,21 +13,21 @@ public class flydino {
         ypos=pYpos;
         dx=pdx;
         dy=pdy;
-        width=100;
-        height=100;
+        width=200;
+        height=200;
         isAlive = true;
     }
 
     public void move(){
-        xpos=xpos+dx;
-        ypos=ypos+dy;
-        if (xpos>1000){
+        xpos=xpos-dx;
+        ypos=ypos-dy;
+        if (xpos>800){
             dx=-dx;
         }
         if (xpos<0){
             dx=-dx;
         }
-        if (ypos>700) {
+        if (ypos>500) {
             dy=-dy;
         }
         if (ypos<0){

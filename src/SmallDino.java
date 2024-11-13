@@ -13,15 +13,15 @@ public class SmallDino {
         ypos=pYpos;
         dx=pdx;
         dy=pdy;
-        width=50;
-        height=50;
+        width=100;
+        height=100;
         isAlive = true;
     }
 
     public void move(){
-        xpos=xpos+dx;
-        ypos=ypos+dy;
-        if (xpos>1000){
+        xpos=xpos-dx;
+        ypos=ypos-dy;
+        if (xpos>900){
             dx=-dx;
         }
         if (xpos<0){
