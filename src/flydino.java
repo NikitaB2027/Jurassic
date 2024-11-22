@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class flydino {
     public String name;
     public int xpos;
@@ -7,6 +9,7 @@ public class flydino {
     public int width;
     public int height;
     public boolean isAlive;
+    public Rectangle rec;
 
     public flydino(int pXpos, int pYpos, int pdx, int pdy){
         xpos=pXpos;
@@ -16,11 +19,13 @@ public class flydino {
         width=200;
         height=200;
         isAlive = true;
+        rec=new Rectangle (xpos,ypos,width,height);
     }
 
     public void move(){
         xpos=xpos-dx;
         ypos=ypos-dy;
+        rec=new Rectangle (xpos,ypos,width,height);
         if (xpos>800){
             dx=-dx;
         }

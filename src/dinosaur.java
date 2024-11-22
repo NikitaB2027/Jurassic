@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class dinosaur {
     public String name;
     public int xpos;
@@ -7,6 +9,7 @@ public class dinosaur {
     public int width;
     public int height;
     public boolean isAlive;
+    public Rectangle rec;
 
     public dinosaur(int pXpos, int pYpos, int pdx, int pdy){
         xpos=pXpos;
@@ -16,18 +19,20 @@ public class dinosaur {
         width=375;
         height=375;
         isAlive = true;
+        rec=new Rectangle (xpos,ypos,width,height);
     }
 
     public void move(){
         xpos=xpos-dx;
         ypos=ypos-dy;
-        if (xpos>1000){
+        rec=new Rectangle (xpos,ypos,width,height);
+        if (xpos>625){
             dx=-dx;
         }
         if (xpos<0){
             dx=-dx;
         }
-        if (ypos>700) {
+        if (ypos>325) {
             dy=-dy;
         }
         if (ypos<0){

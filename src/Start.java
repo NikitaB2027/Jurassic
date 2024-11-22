@@ -16,10 +16,13 @@ public class Start implements Runnable{
     public Image BenPic;
     public  Image StevePic;
     public Image TedPic;
+    public Image backPic;
 
     public dinosaur Ben;
     public flydino Steve;
     public SmallDino Ted;
+    public int holddx,holddy;
+    public Background back;
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -44,6 +47,8 @@ public class Start implements Runnable{
         Steve = new flydino(10,100,3,0);
         TedPic = Toolkit.getDefaultToolkit().getImage("small.png");
         Ted = new SmallDino(500,500,10,0);
+        backPic=Toolkit.getDefaultToolkit().getImage("back.jpg");
+        back=new Background (700,1000);
 
 
     }// BasicGameApp()
@@ -56,6 +61,19 @@ public class Start implements Runnable{
             moveThings();  //move all the game objects
             render();  // paint the graphics
             pause(20); // sleep for 10 ms
+            crash();
+        }
+    }
+
+    public void crash(){
+        System.out.println("crash");
+        if(Ben.rec.intersects(Steve.rec)){
+            holddx=Ben.dx;
+            holddy=Ben.dy;
+            Ben.dx=Steve.dx;
+            Ben.dy=Steve.dy;
+            Steve.dx=holddx;
+            Steve.dy=holddx;
         }
     }
 
@@ -110,6 +128,7 @@ public class Start implements Runnable{
     private void render() {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
+        g.drawImage(backPic,0,0 ,back.width, back.height,null);
 
         //draw the image of the astronaut
         g.drawImage(BenPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
