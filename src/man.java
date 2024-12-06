@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class SmallDino {
+public class man {
     public String name;
     public int xpos;
     public int ypos;
@@ -11,35 +11,33 @@ public class SmallDino {
     public boolean isAlive;
     public Rectangle rec;
 
-    //constructor
-    public SmallDino(int pXpos, int pYpos, int pdx, int pdy){
-        xpos=pXpos;
-        ypos=pYpos;
-        dx=pdx;
-        dy=pdy;
-        width=100;
-        height=100;
+    public man(int pXpos, int pYpos, int pdx, int pdy) {
+        xpos = pXpos;
+        ypos = pYpos;
+        dx = pdx;
+        dy = pdy;
+        width = 50;
+        height = 140;
         isAlive = true;
-        rec=new Rectangle (xpos,ypos,width,height);
+        rec = new Rectangle(xpos, ypos, width, height);
     }
 
     public void move(){
         xpos=xpos-dx;
         ypos=ypos-dy;
         rec=new Rectangle (xpos,ypos,width,height);
-        if (xpos>1000){
+        if (xpos>950){
             dx=-dx;
-            width=-width;
         }
-        if (xpos<100){
+        if (xpos<50){
             dx=-dx;
-            width=-width;
         }
-        if (ypos>600) {
+        if (ypos>560) {
             dy=-dy;
         }
-        if (ypos<400){
+        if (ypos<140){
             dy=-dy;
         }
+
     }
 }

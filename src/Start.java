@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
-public class Start implements Runnable{
+public class Start implements Runnable, KeyListener {
     //Sets the width and height of the program window
     final int WIDTH = 1000;
     final int HEIGHT = 700;
@@ -17,12 +19,21 @@ public class Start implements Runnable{
     public  Image StevePic;
     public Image TedPic;
     public Image backPic;
+    public Image BobPic;
+    public Image BobrunPic;
+    public Image eggoPic;
 
     public dinosaur Ben;
     public flydino Steve;
     public SmallDino Ted;
     public int holddx,holddy;
     public Background back;
+    public man Bob;
+    public String isPressed;{
+        isPressed="1";
+        isPressed="2";
+        isPressed="3";
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -46,9 +57,13 @@ public class Start implements Runnable{
         StevePic=Toolkit.getDefaultToolkit().getImage("flying.png");
         Steve = new flydino(10,100,3,0);
         TedPic = Toolkit.getDefaultToolkit().getImage("small.png");
-        Ted = new SmallDino(500,500,10,0);
-        backPic=Toolkit.getDefaultToolkit().getImage("back.jpg");
-        back=new Background (700,1000);
+        Ted = new SmallDino(300,575,10,4);
+        backPic=Toolkit.getDefaultToolkit().getImage("dinoback.png");
+        back=new Background (700,2656);
+        BobrunPic=Toolkit.getDefaultToolkit().getImage("cavemanrun.png");
+        eggoPic=Toolkit.getDefaultToolkit().getImage("eggo.png");
+        BobPic=Toolkit.getDefaultToolkit().getImage("caveman.png");
+        Bob=new man(500,550,0,0);
 
 
     }// BasicGameApp()
@@ -66,23 +81,26 @@ public class Start implements Runnable{
     }
 
     public void crash(){
-        System.out.println("crash");
-        if(Ben.rec.intersects(Steve.rec)){
-            holddx=Ben.dx;
-            holddy=Ben.dy;
-            Ben.dx=Steve.dx;
-            Ben.dy=Steve.dy;
-            Steve.dx=holddx;
-            Steve.dy=holddx;
+      //  System.out.println("crash");
+        if(Bob.rec.intersects(Steve.rec)){
+            //holddx=Bob.dx;
+            //holddy=Bob.dy;
+            //Bob.dx=Steve.dx;
+            //Bob.dy=Steve.dy;
+            //Steve.dx=holddx;
+            //Steve.dy=holddx;
+            Bob.dx=0;
+            Bob.dy=0;
         }
+
     }
 
-    public void moveThings()
-    {
+    public void moveThings() {
         //calls the move( ) code in the objects
         Ben.move();
         Steve.move();
         Ted.move();
+        Bob.move();
 
     }
 
@@ -100,14 +118,16 @@ public class Start implements Runnable{
         frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
 
         panel = (JPanel) frame.getContentPane();  //sets up a JPanel which is what goes in the frame
-        panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
+        panel.setPreferredSize(new Dimension(WIDTH, 700));  //sizes the JPanel
+        //change the picture to the height as 700
         panel.setLayout(null);   //set the layout
 
         // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
         // and trap input events (Mouse and Keyboard events)
         canvas = new Canvas();
-        canvas.setBounds(0, 0, WIDTH, HEIGHT);
+        canvas.setBounds(0, 0, 1000, HEIGHT);
         canvas.setIgnoreRepaint(true);
+        canvas.addKeyListener(this);
 
         panel.add(canvas);  // adds the canvas to the panel.
 
@@ -134,9 +154,80 @@ public class Start implements Runnable{
         g.drawImage(BenPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
         g.drawImage(StevePic, Steve.xpos, Steve.ypos, Steve.width, Steve.height, null);
         g.drawImage(TedPic, Ted.xpos, Ted.ypos, Ted.width, Ted.height, null);
+       if (isPressed=="2") {
+            g.drawImage(BobrunPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
+       }
+       if (isPressed=="3"){
+           g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100,100, null);
+       }
+        if(isPressed=="1") {
+            g.drawImage(BobPic, Bob.xpos, Bob.ypos, Bob.width, Bob.height, null);
+        }
+
         g.dispose();
 
         bufferStrategy.show();
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        isPressed="1";
+        if(e.getKeyCode()==87){
+            isPressed="2";
+            Bob.dx=0;
+            Bob.dy=4;
+        }
+        if(e.getKeyCode()==65){
+            isPressed="2";
+            Bob.width=-70;
+            Bob.dx=4;
+            Bob.dy=0;
+        }
+        if(e.getKeyCode()==83){
+            isPressed="2";
+            Bob.dx=0;
+            Bob.dy=-4;
+        }
+        if(e.getKeyCode()==68){
+            isPressed="2";
+            Bob.width=-50;
+            Bob.dx=-4;
+            Bob.dy=0;
+        }
+        if(e.getKeyCode()==72){
+            isPressed="3";
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        isPressed="1";
+        if(e.getKeyCode()==87){
+            Bob.dx=0;
+            Bob.dy=0;
+        }
+        if(e.getKeyCode()==65){
+            Bob.dx=0;
+            Bob.dy=0;
+            Bob.width=-50;
+        }
+        if(e.getKeyCode()==83){
+            Bob.dx=0;
+            Bob.dy=0;
+        }
+        if(e.getKeyCode()==68){
+            Bob.dx=0;
+            Bob.dy=0;
+            Bob.width=50;
+        }
+        if(e.getKeyCode()==72){
+            isPressed="1";
+        }
+    }
 }

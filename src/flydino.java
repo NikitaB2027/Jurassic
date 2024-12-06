@@ -1,7 +1,6 @@
 import java.awt.*;
 
 public class flydino {
-    public String name;
     public int xpos;
     public int ypos;
     public int dx;
@@ -38,5 +37,6 @@ public class flydino {
         if (ypos<0){
             dy=-dy;
         }
+
     }
 }

@@ -1,7 +1,6 @@
 import java.awt.*;
 
 public class dinosaur {
-    public String name;
     public int xpos;
     public int ypos;
     public int dx;
