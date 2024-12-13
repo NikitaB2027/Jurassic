@@ -159,10 +159,8 @@ public class Start implements Runnable, KeyListener {
         g.drawImage(BenPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
         g.drawImage(StevePic, Steve.xpos, Steve.ypos, Steve.width, Steve.height, null);
         g.drawImage(TedPic, Ted.xpos, Ted.ypos, Ted.width, Ted.height, null);
-       System.out.println(isPressed);
         if (isPressed=="2" && Bob.isStone==false) {
            if(Bob.lastDX>0){
-               System.out.println("a");
                g.drawImage(BobrunLPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
            }
            if(Bob.lastDX<0 ){
@@ -171,7 +169,6 @@ public class Start implements Runnable, KeyListener {
            }
        }
        if (isPressed=="3" && Bob.isStone==false){
-           System.out.println("c");
            g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
            //if(Bob.isStone==false) {
                //g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
@@ -322,5 +319,6 @@ public class Start implements Runnable, KeyListener {
         if(e.getKeyCode()==72){
             isPressed="1";
         }
+
     }
 }
