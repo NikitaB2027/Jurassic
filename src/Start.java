@@ -164,18 +164,11 @@ public class Start implements Runnable, KeyListener {
                g.drawImage(BobrunLPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
            }
            if(Bob.lastDX<0 ){
-               System.out.println("b");
                g.drawImage(BobrunPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
            }
        }
        if (isPressed=="3" && Bob.isStone==false){
            g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
-           //if(Bob.isStone==false) {
-               //g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
-           //}
-          // if(Bob.isStone==true){
-               //g.drawImage(BobdeadPic, Bob.xpos, Bob.ypos, 140, 50, null);
-        //  }
        }
 
         if(Bob.isStone==true){
