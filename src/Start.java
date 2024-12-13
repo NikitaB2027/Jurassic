@@ -314,7 +314,7 @@ public class Start implements Runnable, KeyListener {
             Bob.dy=0;
         }
         if(e.getKeyCode()==68){
-           // Bob.lastDX=Bob.dx;
+            //Bob.lastDX=Bob.dx;
             Bob.dx=0;
             Bob.dy=0;
             Bob.width=50;
