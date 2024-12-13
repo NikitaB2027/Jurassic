@@ -22,6 +22,8 @@ public class Start implements Runnable, KeyListener {
     public Image BobPic;
     public Image BobrunPic;
     public Image eggoPic;
+    public Image BobrunLPic;
+    public Image BobdeadPic;
 
     public dinosaur Ben;
     public flydino Steve;
@@ -63,6 +65,8 @@ public class Start implements Runnable, KeyListener {
         BobrunPic=Toolkit.getDefaultToolkit().getImage("cavemanrun.png");
         eggoPic=Toolkit.getDefaultToolkit().getImage("eggo.png");
         BobPic=Toolkit.getDefaultToolkit().getImage("caveman.png");
+        BobrunLPic=Toolkit.getDefaultToolkit().getImage("caveman runl.png");
+        BobdeadPic=Toolkit.getDefaultToolkit().getImage("caveman dead.png");
         Bob=new man(500,550,0,0);
 
 
@@ -89,6 +93,7 @@ public class Start implements Runnable, KeyListener {
             //Bob.dy=Steve.dy;
             //Steve.dx=holddx;
             //Steve.dy=holddx;
+            Bob.isStone=true;
             Bob.dx=0;
             Bob.dy=0;
         }
@@ -154,14 +159,35 @@ public class Start implements Runnable, KeyListener {
         g.drawImage(BenPic, Ben.xpos, Ben.ypos, Ben.width, Ben.height, null);
         g.drawImage(StevePic, Steve.xpos, Steve.ypos, Steve.width, Steve.height, null);
         g.drawImage(TedPic, Ted.xpos, Ted.ypos, Ted.width, Ted.height, null);
-       if (isPressed=="2") {
-            g.drawImage(BobrunPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
+       System.out.println(isPressed);
+        if (isPressed=="2" && Bob.isStone==false) {
+           if(Bob.lastDX>0){
+               System.out.println("a");
+               g.drawImage(BobrunLPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
+           }
+           if(Bob.lastDX<0 ){
+               System.out.println("b");
+               g.drawImage(BobrunPic, Bob.xpos, Bob.ypos, 70, Bob.height, null);
+           }
        }
-       if (isPressed=="3"){
-           g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100,100, null);
+       if (isPressed=="3" && Bob.isStone==false){
+           System.out.println("c");
+           g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
+           //if(Bob.isStone==false) {
+               //g.drawImage(eggoPic, Bob.xpos, Bob.ypos, 100, 100, null);
+           //}
+          // if(Bob.isStone==true){
+               //g.drawImage(BobdeadPic, Bob.xpos, Bob.ypos, 140, 50, null);
+        //  }
        }
-        if(isPressed=="1") {
+
+        if(Bob.isStone==true){
+            g.drawImage(BobdeadPic, Bob.xpos, Bob.ypos, 140, 50, null);
+             }
+
+        if(isPressed=="1" && Bob.isStone==false) {
             g.drawImage(BobPic, Bob.xpos, Bob.ypos, Bob.width, Bob.height, null);
+
         }
 
         g.dispose();
@@ -182,23 +208,86 @@ public class Start implements Runnable, KeyListener {
             isPressed="2";
             Bob.dx=0;
             Bob.dy=4;
+            if(Bob.rec.intersects(Steve.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ben.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ted.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
         }
         if(e.getKeyCode()==65){
             isPressed="2";
-            Bob.width=-70;
             Bob.dx=4;
+            Bob.lastDX=Bob.dx;
+
             Bob.dy=0;
+            if(Bob.rec.intersects(Steve.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ben.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ted.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
         }
         if(e.getKeyCode()==83){
             isPressed="2";
             Bob.dx=0;
             Bob.dy=-4;
+            if(Bob.rec.intersects(Steve.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ben.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ted.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
         }
         if(e.getKeyCode()==68){
             isPressed="2";
             Bob.width=-50;
             Bob.dx=-4;
+            Bob.lastDX=Bob.dx;
+
             Bob.dy=0;
+            if(Bob.rec.intersects(Steve.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ben.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
+            if(Bob.rec.intersects(Ted.rec)){
+                Bob.isStone=true;
+                Bob.dx=0;
+                Bob.dy=0;
+            }
         }
         if(e.getKeyCode()==72){
             isPressed="3";
@@ -209,19 +298,23 @@ public class Start implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         isPressed="1";
         if(e.getKeyCode()==87){
+            //Bob.lastDX=Bob.dx;
             Bob.dx=0;
             Bob.dy=0;
         }
         if(e.getKeyCode()==65){
+           // Bob.lastDX=Bob.dx;
             Bob.dx=0;
             Bob.dy=0;
             Bob.width=-50;
         }
         if(e.getKeyCode()==83){
+            //Bob.lastDX=Bob.dx;
             Bob.dx=0;
             Bob.dy=0;
         }
         if(e.getKeyCode()==68){
+           // Bob.lastDX=Bob.dx;
             Bob.dx=0;
             Bob.dy=0;
             Bob.width=50;

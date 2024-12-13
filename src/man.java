@@ -10,6 +10,8 @@ public class man {
     public int height;
     public boolean isAlive;
     public Rectangle rec;
+    public boolean isStone;
+    public int lastDX=0;
 
     public man(int pXpos, int pYpos, int pdx, int pdy) {
         xpos = pXpos;
@@ -23,9 +25,18 @@ public class man {
     }
 
     public void move(){
-        xpos=xpos-dx;
-        ypos=ypos-dy;
+        if(isStone==false) {
+            xpos = xpos - dx;
+            ypos = ypos - dy;
+        }
         rec=new Rectangle (xpos,ypos,width,height);
+        if(dx>0){
+            width=-70;
+        }
+        if(dx<0){
+            width=-70;
+        }
+
         if (xpos>950){
             dx=-dx;
         }
